@@ -1,0 +1,77 @@
+﻿@model Gestao_de_combustivel.Models.Veiculo
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Veiculo</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Marca)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Marca)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Modelo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Modelo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Placa)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Placa)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AnoFabricacao)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AnoFabricacao)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AnoModelo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AnoModelo)
+        </dd>
+    </dl>
+    <h4>Consumos</h4>
+    @if (Model.Consumos != null && Model.Consumos.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Consumos.First().Descricao)</th>
+                    <th>@Html.DisplayNameFor(model => model.Consumos.First().Data)</th>
+                    <th>@Html.DisplayNameFor(model => model.Consumos.First().Valor)</th>
+                    <th>@Html.DisplayNameFor(model => model.Consumos.First().Tipo)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var consumo in Model.Consumos)
+                {
+                    <tr>
+                        <td>@consumo.Descricao</td>
+                        <td>@consumo.Data.ToString("dd/MM/yyyy")</td>
+                        <td>@consumo.Valor.ToString("C", new System.Globalization.CultureInfo("pt-BR"))</td>
+                        <td>@consumo.Tipo</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Não há consumos cadastrados para este veículo.</p>
+    }
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

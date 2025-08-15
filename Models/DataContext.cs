@@ -12,13 +12,13 @@ namespace Gestao_de_combustivel.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<VeiculoUsuarios>()
-                .HasKey(c => new { c.VeiculoId, c.UsuarioId });
+                .HasKey(vu => new { vu.VeiculoId, vu.UsuarioId });
             modelBuilder.Entity<VeiculoUsuarios>()
-                .HasOne(c => c.Veiculo).WithMany(c => c.Usuarios)
-            .HasForeignKey(c => c.VeiculoId);
+                .HasOne(vu => vu.Veiculo).WithMany(v => v.Usuarios)
+            .HasForeignKey(vu => vu.VeiculoId);
             modelBuilder.Entity<VeiculoUsuarios>()
-                .HasOne(c => c.Usuario).WithMany(c => c.Veiculos)
-            .HasForeignKey(c => c.UsuarioId);
+                .HasOne(vu => vu.Usuario).WithMany(u => u.Veiculos)
+            .HasForeignKey(vu => vu.UsuarioId);
 
 
         }
